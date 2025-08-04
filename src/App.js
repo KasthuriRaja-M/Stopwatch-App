@@ -50,7 +50,11 @@ function App() {
   return (
     <div className="App">
       <div className="stopwatch-container">
-        <h1 className="title">Stopwatch</h1>
+        <h1 className="title">
+          <span className="title-word title-word-1">TIME</span>
+          <span className="title-word title-word-2">TRACKER</span>
+          <span className="title-word title-word-3">PRO</span>
+        </h1>
         
         <div className={`time-display ${isRunning ? 'running' : ''}`}>
           <span className="time">{formatTime(time)}</span>
