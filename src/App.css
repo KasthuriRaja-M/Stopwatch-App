@@ -16,6 +16,18 @@
   max-width: 500px;
   width: 100%;
   transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .stopwatch-container:hover {
@@ -29,6 +41,18 @@
   font-weight: 700;
   margin-bottom: 30px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: slideInDown 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .time-display {
@@ -37,6 +61,40 @@
   padding: 30px;
   margin-bottom: 30px;
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  animation: scaleIn 0.6s ease-out 0.4s both;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.time-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .time {
@@ -46,6 +104,16 @@
   font-family: 'Courier New', monospace;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   display: block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 .controls {
@@ -54,6 +122,16 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 30px;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .btn {
@@ -67,35 +145,77 @@
   min-width: 100px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .btn:hover:not(:disabled) {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 .btn-start {
   background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
   color: white;
+  animation: bounceIn 0.6s ease-out 0.8s both;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .btn-stop {
   background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
   color: white;
+  animation: bounceIn 0.6s ease-out 0.9s both;
 }
 
 .btn-reset {
   background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
   color: white;
+  animation: bounceIn 0.6s ease-out 1.0s both;
 }
 
 .btn-lap {
   background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
   color: white;
+  animation: bounceIn 0.6s ease-out 1.1s both;
 }
 
 .btn:disabled {
@@ -110,6 +230,18 @@
   padding: 20px;
   max-height: 300px;
   overflow-y: auto;
+  animation: slideInUp 0.6s ease-out 1.2s both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .laps-container h3 {
@@ -134,11 +266,31 @@
   border-radius: 10px;
   border-left: 4px solid #667eea;
   transition: all 0.3s ease;
+  animation: slideInRight 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.lap-item:nth-child(1) { animation-delay: 0.1s; }
+.lap-item:nth-child(2) { animation-delay: 0.2s; }
+.lap-item:nth-child(3) { animation-delay: 0.3s; }
+.lap-item:nth-child(4) { animation-delay: 0.4s; }
+.lap-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .lap-item:hover {
   background: rgba(255, 255, 255, 1);
-  transform: translateX(5px);
+  transform: translateX(5px) scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .lap-number {
@@ -152,6 +304,51 @@
   font-weight: 600;
   color: #333;
   font-size: 1.1rem;
+}
+
+/* Running animation for the time display when stopwatch is active */
+.time-display.running {
+  animation: runningPulse 1s infinite;
+}
+
+@keyframes runningPulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5), 0 0 20px rgba(102, 126, 234, 0.3);
+  }
+}
+
+/* Button press animation */
+.btn:active {
+  animation: buttonPress 0.1s ease-out;
+}
+
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Floating animation for the container */
+.stopwatch-container {
+  animation: fadeInUp 0.8s ease-out, float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Responsive Design */

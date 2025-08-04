@@ -52,7 +52,7 @@ function App() {
       <div className="stopwatch-container">
         <h1 className="title">Stopwatch</h1>
         
-        <div className="time-display">
+        <div className={`time-display ${isRunning ? 'running' : ''}`}>
           <span className="time">{formatTime(time)}</span>
         </div>
         
